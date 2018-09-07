@@ -11,8 +11,10 @@ Find out more [about Glitch](https://glitch.com/about).
 Your Project
 ------------
 
+Inspired by the JavaScript [challenge](http://bit.ly/ultimateCutPaste), this project attempts to create the equivalent JavaScript code to achieve the same thing.
+
 - Must [read](https://flaviocopes.com/xhr/)
-- Write now, uses XHR, must move to using [`fetch`](https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api)
+- Write now the project uses **XHR**, must move to using [`fetch`](https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api)
 
 ## Read about CORs 
 - [CORs tutorial](https://www.html5rocks.com/en/tutorials/cors/)
@@ -29,8 +31,3 @@ On the back-end,
 - add frameworks and packages in `package.json`
 - safely store app secrets in `.env` (nobody can see this but you and people you invite)
 
-
-Made by [Fog Creek](https://fogcreek.com/)
--------------------
-
-\ ゜o゜)ノ

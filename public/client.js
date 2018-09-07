@@ -88,10 +88,12 @@ function getPrime (value) {
   xhr.onload = function() {
     //var xml = this.responseXML;
     //console.log("XML " + xml);
+
+    console.log("extracting a definition for getAllFactorsFor from SO"); 
+    // here's the result of the ultimate cut and paste!
     stringFunc = extractCode(xhr);
     eval(stringFunc);
     
-    // here's the result of the ultimate cut and paste!
     var primes = getAllFactorsFor(value);
     var primeString = value + " has factors: " + primes;
     dreams.push(primeString);

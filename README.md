@@ -21,6 +21,25 @@ Inspired by the JavaScript [challenge](http://bit.ly/ultimateCutPaste), this pro
 - [Another CORs tutorial](https://www.eriwen.com/javascript/how-to-cors/)
 - [JavaScript Alternative CORs library](https://github.com/jpillora/xdomain)
 
+### The Core of the solution
+
+It is all about four lines. 
+
+```js 
+result = 
+  xml.evaluate(nodepath, xml, null, XPathResult.STRING_TYPE, null)
+     .stringValue;
+```
+
+and then 
+```js
+stringFunc = extractCode(xhr);
+eval(stringFunc);
+var primes = getAllFactorsFor(value);
+```
+
+---
+
 
 On the front-end,
 - edit `public/client.js`, `public/style.css` and `views/index.html`

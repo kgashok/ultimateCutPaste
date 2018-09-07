@@ -1,7 +1,7 @@
 // client-side js
 // run by the browser each time your view template is loaded
 
-console.log('hello world 2:o');
+console.log('hello world :o');
 
 // our default array of dreams
 const dreams = [
@@ -89,12 +89,14 @@ function getPrime (value) {
     //var xml = this.responseXML;
     //console.log("XML " + xml);
 
-    console.log("extracting a definition for getAllFactorsFor from SO"); 
+    console.log("trying to get a definition for getAllFactorsFor from SO"); 
     // here's the result of the ultimate cut and paste!
     stringFunc = extractCode(xhr);
     eval(stringFunc);
     
     var primes = getAllFactorsFor(value);
+    console.log("factors for " + value + " : ");
+    console.log(primes);
     var primeString = value + " has factors: " + primes;
     dreams.push(primeString);
     appendNewDream(primeString);
@@ -105,13 +107,17 @@ function getPrime (value) {
     let xml = xhr.responseXML;
     //console.log("xml:" + xml);
     if (xml !== null) {
-      // let nodepath = '//body/main/div[5]/div/div[2]/pre'; 
+      //let nodepath = '//body/main/div[5]/div/div[2]/pre'; 
       //let ashwinPath = '//*[@id="answer-52202466"]/div/div[2]/div[1]/pre/code';
       //let nodepath = ashwinPath;
       let nodepath = '//*[@id="answer-43999812"]/div/div[2]/div[1]/pre[1]/code'; 
 
       var result = 
         xml.evaluate(nodepath, xml, null, XPathResult.STRING_TYPE, null).stringValue;
+      if (result === null)
+        console.log ("Extract failed!");
+      else 
+        console.log("result is:" + result);
       return result;  
     }
   }

@@ -26,16 +26,18 @@ Inspired by the JavaScript [challenge](http://bit.ly/ultimateCutPaste), this pro
 It is all about four lines. 
 
 ```js 
-result = 
-  xml.evaluate(nodepath, xml, null, XPathResult.STRING_TYPE, null)
-     .stringValue;
-```
-
-and then 
-```js
 stringFunc = extractCode(xhr);
 eval(stringFunc);
 var primes = getAllFactorsFor(value);
+```
+
+and this one important line inside `extractCode` function:
+
+```js
+result = 
+  xml.evaluate(nodepath, xml, null, XPathResult.STRING_TYPE, null)
+     .stringValue;
+
 ```
 
 ---

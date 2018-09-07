@@ -14,6 +14,11 @@ Your Project
 - Must [read](https://flaviocopes.com/xhr/)
 - Write now, uses XHR, must move to using [`fetch`](https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api)
 
+## Read about CORs 
+- [CORs tutorial](https://www.html5rocks.com/en/tutorials/cors/)
+- [Another CORs tutorial](https://www.eriwen.com/javascript/how-to-cors/)
+- [JavaScript Alternative CORs library](https://github.com/jpillora/xdomain)
+
 
 On the front-end,
 - edit `public/client.js`, `public/style.css` and `views/index.html`

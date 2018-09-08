@@ -3,6 +3,10 @@
 
 console.log('hello world :o');
 
+//the variable that will hold the definition of 
+//the required function to calculate prime factors
+var stringFunc = "";
+
 // our default array of dreams
 const dreams = [
   'Find and count some sheep',
@@ -37,6 +41,12 @@ function isInt(value) {
   return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
 }
 
+function addOutput(number, factorList) { 
+  var primeString = number + " has factors: " + factorList;
+  dreams.push(primeString);
+  appendNewDream(primeString);
+}
+
 // listen for the form to be submitted and add a new dream when it is
 dreamsForm.onsubmit = function(event) {
   // stop our form submission from refreshing the page
@@ -44,7 +54,15 @@ dreamsForm.onsubmit = function(event) {
 
   if (isInt(dreamInput.value)) {
     // get dream value and add its prime factors
-    getPrime(dreamInput.value); 
+    if (stringFunc === "") {
+      console.log("Function not available! "); 
+      getPrime(dreamInput.value);
+    } else {
+      console.log ("stringFunc" + stringFunc);
+      eval(stringFunc);
+      var primes = getAllFactorsFor(dreamInput.value); 
+      addOutput(dreamInput.value, primes);
+    }
   }
   else {
     dreams.push(dreamInput.value);
@@ -73,7 +91,6 @@ dreamsForm.onsubmit = function(event) {
 
 };
 
-var stringFunc = "";
 function getPrime (value) {
   
   const xhr = new XMLHttpRequest();
@@ -97,9 +114,7 @@ function getPrime (value) {
     var primes = getAllFactorsFor(value);
     console.log("factors for " + value + " : ");
     console.log(primes);
-    var primeString = value + " has factors: " + primes;
-    dreams.push(primeString);
-    appendNewDream(primeString);
+    addOutput(value, primes);
     //console.log ("dreams:" + dreams); 
   }
 

@@ -45,17 +45,80 @@ function addOutput(number, factorList) {
   appendNewDream(primeString);
 }
 
+function evil(fn) {
+  return Function('return ' + fn)();
+}
+
+/*
+var code = "console.log('hello world');";
+
+// With a blob:
+var blob = new Blob([code], {type: 'text/javascript'});
+var urlCreator = window.URL || window.webkitURL;
+var url = urlCreator.createObjectURL( blob );
+
+function loadScript(url, callback)
+{
+    // Add a the script tag to the head
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+
+    // Bind the callback (depends on browser compatibility).
+    script.onreadystatechange = callback;
+    script.onload = callback;
+
+    // Load the script
+    head.appendChild(script);
+}
+
+// Any variables or methods inside the code will be on callback.
+loadScript(url, callback);
+
+//stringFunc = "console.log ('Hello World!'); return 42;"; 
+  // With a blob:
+  var blob = new Blob([stringFunc], {type: 'text/javascript'});
+  var urlCreator = window.URL || window.webkitURL;
+  var url = urlCreator.createObjectURL( blob );
+
+  function loadScript(url, callback) {
+    // Add a the script tag to the head
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+
+    // Bind the callback (depends on browser compatibility).
+    script.onreadystatechange = callback(42);
+    script.onload = callback(42);
+
+    // Load the script
+    head.appendChild(script);
+  }
+  // Any variables or methods inside the code will be on callback.
+  loadScript(url, cb);
+  
+  function cb(rValue) {
+    console.log("inside call back " + rValue); 
+  }
+
+*/
+
 //the variable that will hold the definition of 
 //the required function to calculate prime factors
 var stringFunc = undefined;
+
 function addNumberAndItsFactors(number) {
   console.log("stringFunc " + stringFunc);
   if (stringFunc === undefined) {
     console.log("Function not available! "); 
     getPrime(dreamInput.value);
   }
-  eval(stringFunc);
-  var primes = getAllFactorsFor(dreamInput.value); 
+
+  //eval(stringFunc);
+  //var primes = getAllFactorsFor(dreamInput.value); 
+  var primes = evil(stringFunc)(dreamInput.value);
   addOutput(dreamInput.value, primes);
 
 }
@@ -120,13 +183,16 @@ function getPrime (value) {
 
   function extractCode(xhr) {
     let xml = xhr.responseXML;
-    //console.log("xml:" + xml);
+    console.log("xml:" + xml);
+    //console.log("xml:" + xhr.responseText);
     if (xml !== null) {
       //let nodepath = '//body/main/div[5]/div/div[2]/pre'; 
       //let ashwinPath = '//*[@id="answer-52202466"]/div/div[2]/div[1]/pre/code';
       //let nodepath = ashwinPath;
+      
       let nodepath = '//*[@id="answer-43999812"]/div/div[2]/div[1]/pre[1]/code'; 
-
+      //let nodepath = '/html/body/main/div/div[4]/div[1]/div[2]/pre[1]/code';
+      //let nodepath = '//body/main/div/div[4]/div[1]/div[2]/pre[1]/code';
       var result = 
         xml.evaluate(nodepath, xml, null, XPathResult.STRING_TYPE, null).stringValue;
       if (result === null)

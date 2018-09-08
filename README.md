@@ -15,13 +15,14 @@ Inspired by the JavaScript [challenge](http://bit.ly/ultimateCutPaste), this pro
 
 - Must [read](https://flaviocopes.com/xhr/)
 - Write now the project uses **XHR**, must move to using [`fetch`](https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api)
+- View other issues on the github [repo](https://github.com/kgashok/ultimateCutPaste/issues)
 
 ## Read about CORs 
 - [CORs tutorial](https://www.html5rocks.com/en/tutorials/cors/)
 - [Another CORs tutorial](https://www.eriwen.com/javascript/how-to-cors/)
 - [JavaScript Alternative CORs library](https://github.com/jpillora/xdomain)
 
-### The Core of the solution
+### The Core of the Solution
 
 It is all about four lines. 
 

@@ -69,3 +69,9 @@ footer {
   padding-top: 25px;
   border-top: 1px solid lightgrey;
 }
+
+.factors { 
+  font-weight: bold;
+  font-size: 200%;
+  background-color: azure;
+}

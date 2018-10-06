@@ -11,9 +11,13 @@ const dreams = [
 const dreamsList = document.getElementById('dreams');
 const dreamsForm = document.forms[0];
 const dreamInput = dreamsForm.elements['dream'];
+
 // a helper function that creates a list item for a given dream
-const appendNewDream = function(dream) {
-  const newListItem = document.createElement('li');
+const appendNewDream = function(dream, factors) {
+  let newListItem = document.createElement('li');
+  if (factors === true) {
+    newListItem.setAttribute("class", "factors");
+  }
   newListItem.innerHTML = dream;
   dreamsList.appendChild(newListItem);
 }
@@ -21,66 +25,25 @@ const appendNewDream = function(dream) {
 dreams.forEach( function(dream) {
   appendNewDream(dream);
 });
+
 // Really? to determine whether an input is 
 // an integer or not? 
 // https://stackoverflow.com/a/14794066/307454
 function isInt(value) {
   return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
 }
+
 function addOutput(number, factorList) { 
   console.log("factors for " + number + " : ");
   console.log(factorList);
   var primeString = number + " has factors: " + factorList;
   dreams.push(primeString);
-  appendNewDream(primeString);
+  appendNewDream(primeString, true);
 }
 function evil(fn) {
   return Function('return ' + fn)();
 }
-/*
-var code = "console.log('hello world');";
-// With a blob:
-var blob = new Blob([code], {type: 'text/javascript'});
-var urlCreator = window.URL || window.webkitURL;
-var url = urlCreator.createObjectURL( blob );
-function loadScript(url, callback)
-{
-    // Add a the script tag to the head
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = url;
-    // Bind the callback (depends on browser compatibility).
-    script.onreadystatechange = callback;
-    script.onload = callback;
-    // Load the script
-    head.appendChild(script);
-}
-// Any variables or methods inside the code will be on callback.
-loadScript(url, callback);
-//stringFunc = "console.log ('Hello World!'); return 42;"; 
-  // With a blob:
-  var blob = new Blob([stringFunc], {type: 'text/javascript'});
-  var urlCreator = window.URL || window.webkitURL;
-  var url = urlCreator.createObjectURL( blob );
-  function loadScript(url, callback) {
-    // Add a the script tag to the head
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = url;
-    // Bind the callback (depends on browser compatibility).
-    script.onreadystatechange = callback(42);
-    script.onload = callback(42);
-    // Load the script
-    head.appendChild(script);
-  }
-  // Any variables or methods inside the code will be on callback.
-  loadScript(url, cb);
-  function cb(rValue) {
-    console.log("inside call back " + rValue); 
-  }
-*/
+
 //the variable that will hold the definition of 
 //the required function to calculate prime factors
 var stringFunc = undefined;
@@ -168,3 +131,48 @@ function getPrime (value) {
   xhr.responseType = "document"; 
   xhr.send();
 }
+
+/*
+var code = "console.log('hello world');";
+// With a blob:
+var blob = new Blob([code], {type: 'text/javascript'});
+var urlCreator = window.URL || window.webkitURL;
+var url = urlCreator.createObjectURL( blob );
+function loadScript(url, callback)
+{
+    // Add a the script tag to the head
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    // Bind the callback (depends on browser compatibility).
+    script.onreadystatechange = callback;
+    script.onload = callback;
+    // Load the script
+    head.appendChild(script);
+}
+// Any variables or methods inside the code will be on callback.
+loadScript(url, callback);
+//stringFunc = "console.log ('Hello World!'); return 42;"; 
+  // With a blob:
+  var blob = new Blob([stringFunc], {type: 'text/javascript'});
+  var urlCreator = window.URL || window.webkitURL;
+  var url = urlCreator.createObjectURL( blob );
+  function loadScript(url, callback) {
+    // Add a the script tag to the head
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    // Bind the callback (depends on browser compatibility).
+    script.onreadystatechange = callback(42);
+    script.onload = callback(42);
+    // Load the script
+    head.appendChild(script);
+  }
+  // Any variables or methods inside the code will be on callback.
+  loadScript(url, cb);
+  function cb(rValue) {
+    console.log("inside call back " + rValue); 
+  }
+*/

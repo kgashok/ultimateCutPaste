@@ -22,6 +22,9 @@ Inspired by the JavaScript [challenge](http://bit.ly/ultimateCutPaste), this pro
 - [Another CORs tutorial](https://www.eriwen.com/javascript/how-to-cors/)
 - [JavaScript Alternative CORs library](https://github.com/jpillora/xdomain)
 
+## Read about Express JS 
+ - Eating out and Express JS - read the [analogy](https://medium.freecodecamp.org/going-out-to-eat-and-understanding-the-basics-of-express-js-f034a029fb66)
+ 
 ### The Core of the Solution
 
 It is all about four lines. 

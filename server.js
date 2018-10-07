@@ -1,6 +1,10 @@
 // server.js
 // where your node app starts
 // init project
+
+// Eating out and Express JS - read the analogy
+// https://medium.freecodecamp.org/going-out-to-eat-and-understanding-the-basics-of-express-js-f034a029fb66
+
 var express = require('express');
 var app = express();
 // we've started you off with Express, 

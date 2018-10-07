@@ -60,19 +60,19 @@ button:active {
   box-shadow: none;
 }
 
-li {
-  margin-bottom: 5px;
-}
-
 footer {
   margin-top: 50px;
   padding-top: 25px;
   border-top: 1px solid lightgrey;
 }
 
+li {
+  margin-bottom: 5px;
+}
+
 .factors { 
   font-family: Courier New; 
   font-weight: bold;
-  font-size: 200%;
+  font-size: 140%;
   background-color: azure;
 }

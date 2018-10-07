@@ -11,7 +11,6 @@ const dreams = [
 const dreamsList = document.getElementById('dreams');
 const dreamsForm = document.forms[0];
 const dreamInput = dreamsForm.elements['dream'];
-
 // a helper function that creates a list item for a given dream
 const appendNewDream = function(dream, factors) {
   let newListItem = document.createElement('li');
@@ -25,14 +24,13 @@ const appendNewDream = function(dream, factors) {
 dreams.forEach( function(dream) {
   appendNewDream(dream);
 });
-
 // Really? to determine whether an input is 
 // an integer or not? 
 // https://stackoverflow.com/a/14794066/307454
 function isInt(value) {
-  return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
+  return !isNaN(value) && 
+    (function(x) { return (x | 0) === x; })(parseFloat(value))
 }
-
 function addOutput(number, factorList) { 
   console.log("factors for " + number + " : ");
   console.log(factorList);
@@ -40,15 +38,15 @@ function addOutput(number, factorList) {
   dreams.push(primeString);
   appendNewDream(primeString, true);
 }
+
 function evil(fn) {
   return Function('return ' + fn)();
 }
-
 //the variable that will hold the definition of 
 //the required function to calculate prime factors
 var stringFunc = undefined;
 function addNumberAndItsFactors(number) {
-  console.log("stringFunc " + stringFunc);
+  //console.log("stringFunc " + stringFunc);
   if (stringFunc === undefined) {
     console.log("Function not available! "); 
     getPrime(dreamInput.value);
@@ -131,7 +129,6 @@ function getPrime (value) {
   xhr.responseType = "document"; 
   xhr.send();
 }
-
 /*
 var code = "console.log('hello world');";
 // With a blob:

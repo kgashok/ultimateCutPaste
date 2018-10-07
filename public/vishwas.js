@@ -1,3 +1,6 @@
+// Original file contributed by Ashwin Vishwas (KITE, 2015)
+// A version that primarily runs in the console 
+//
 var theStringForFunc = "";
 function cli() {
   var xhr = new XMLHttpRequest();

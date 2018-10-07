@@ -9,17 +9,18 @@
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
 // Step 1 Hiring the manager
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();  // a variable to hold the Express application
 
-// Step 2 Got shirt and shoes? 
+// Step 2 Are the customers wearing shirt and shoes? 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 app.use(function(req, res, next) {
   //res.header("Access-Control-Allow-Origin", "*");
   //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   //console.log('Request: ', req); 
-  //console.log('Response: ', res); 
+  //console.log('Response: ', res);
+  //if (req.shirt && res.shoes)
   next();
 });
 

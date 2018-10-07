@@ -17,6 +17,9 @@ const appendNewDream = function(dream, factors) {
   if (factors === true) {
     newListItem.setAttribute("class", "factors");
   }
+  else if (factors == "prime") {
+    newListItem.setAttribute("class", "prime");
+  }
   newListItem.innerHTML = dream;
   dreamsList.appendChild(newListItem);
 }
@@ -34,9 +37,16 @@ function isInt(value) {
 function addOutput(number, factorList) { 
   console.log("factors for " + number + " : ");
   console.log(factorList);
-  var primeString = number + " has factors: " + factorList;
+  var displayAsNumber = true;
+  if (factorList.length > 1) {
+    var primeString = number + " has factors: " + factorList;
+  }
+  else {
+    var primeString = number + " is prime!";
+    displayAsNumber = "prime";
+  }
   dreams.push(primeString);
-  appendNewDream(primeString, true);
+  appendNewDream(primeString, displayAsNumber);
 }
 
 function evil(fn) {

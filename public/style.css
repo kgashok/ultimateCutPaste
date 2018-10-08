@@ -76,8 +76,14 @@ footer {
   clear: both;
 }
 
-li {
+li:nth-child(even) {
   margin-bottom: 5px;
+  background-color: lavender;
+}
+
+li:nth-child(odd) {
+  margin-bottom: 5px;
+  background-color: snow;
 }
 
 .factors { 

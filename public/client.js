@@ -73,7 +73,7 @@ dreamsForm.onsubmit = function(event) {
   var val = Number(dreamInput.value);
   console.log(val); 
   // if (isInt(val)) {
-  if (typeof(val) === "number") {
+  if (!isNaN(val) && typeof(val) === "number") {
     // get dream value and add its prime factors
     addNumberAndItsFactors(val);
   }

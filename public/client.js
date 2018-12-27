@@ -63,9 +63,27 @@ function addNumberAndItsFactors(number) {
   }
   //eval(stringFunc);
   //var primes = getAllFactorsFor(dreamInput.value); 
+  // This is where we need to change the cursor to a busy variant
+  changeToBusyCursor();
   var primes = evil(stringFunc)(dreamInput.value);
   addOutput(dreamInput.value, primes);
+  
+  // And then change it back to the original cursor 
+  changeToNormalCursor();
 }
+
+function changeToBusyCursor() { 
+  console.log("Changing cursor to busy...");
+  var node = document.getElementById("progress-status"); 
+  node.innerHTML = "Calculating factors..."; 
+}
+function changeToNormalCursor() {
+  console.log("Changing cursor to normal...");
+  var node = document.getElementById("progress-status"); 
+  node.innerHTML = "Completed, ok!"; 
+
+}
+
 // listen for the form to be submitted and add a new dream when it is
 dreamsForm.onsubmit = function(event) {
   // stop our form submission from refreshing the page
@@ -111,10 +129,16 @@ function getPrime (value) {
     //console.log("XML " + xml);
     console.log("trying to get a definition for getAllFactorsFor from SO"); 
     // here's the result of the ultimate cut and paste!
+
     stringFunc = extractCode(xhr);
     addNumberAndItsFactors(value);
+
     //console.log ("dreams:" + dreams); 
   }
+  // the core of the whole application is this function
+  // need to modify it so it can use promises 
+  // Currently, it is using XHR (XMLHttpRequest)
+  //
   function extractCode(xhr) {
     let xml = xhr.responseXML;
     //console.log("xml:" + xml);
@@ -125,9 +149,10 @@ function getPrime (value) {
       //let nodepath = ashwinPath;
       let nodepath = '//*[@id="answer-43999812"]/div/div[2]/div[1]/pre[1]/code'; 
       //let nodepath = '/html/body/main/div/div[4]/div[1]/div[2]/pre[1]/code';
-      //let nodepath = '//body/main/div/div[4]/div[1]/div[2]/pre[1]/code';
+      //let nodepath = '//body/main/div/div[4]/div[1]/div[2]/pre[1]/code';  
       var result = 
           xml.evaluate(nodepath, xml, null, XPathResult.STRING_TYPE, null).stringValue;
+      
       if (result === null)
         console.log ("Extract failed!");
       else 
@@ -135,9 +160,9 @@ function getPrime (value) {
       return result;  
     }
   }
+
   //const url = "https://stackoverflow.com/questions/39899072/how-to-find-prime-factors-using-a-for-loop-in-javascript"; 
   const url = "https://cors.io/?https://stackoverflow.com/questions/39899072/how-to-find-prime-factors-using-a-for-loop-in-javascript"; 
-  xhr
   xhr.open('GET', url, true);
   xhr.responseType = "document"; 
   xhr.send();

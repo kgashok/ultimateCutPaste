@@ -68,12 +68,21 @@ button:active {
   box-shadow: none;
 }
 
+/* 
+  Read about clear and how it interacts with float
+  https://stackoverflow.com/questions/12871710/what-does-the-css-rule-clear-both-do
+
+  0. https://developer.mozilla.org/en-US/docs/Web/CSS/clear
+  1. Simple - https://stackoverflow.com/a/27082817/307454
+  2. Detailed - https://stackoverflow.com/a/12871734/307454
+  3. https://css-tricks.com/almanac/properties/c/clear/
+*/
 footer {
   font-size: smaller;
   margin-top: 50px;
   padding-top: 25px;
   border-top: 1px solid lightgrey;
-  clear: both;
+  clear: left;
 }
 
 li:nth-child(even) {

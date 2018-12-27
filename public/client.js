@@ -70,9 +70,12 @@ function addNumberAndItsFactors(number) {
 dreamsForm.onsubmit = function(event) {
   // stop our form submission from refreshing the page
   event.preventDefault();
-  if (isInt(dreamInput.value)) {
+  var val = Number(dreamInput.value);
+  console.log(val); 
+  // if (isInt(val)) {
+  if (typeof(val) === "number") {
     // get dream value and add its prime factors
-    addNumberAndItsFactors(dreamInput.value);
+    addNumberAndItsFactors(val);
   }
   else {
     dreams.push(dreamInput.value);
@@ -183,3 +186,9 @@ loadScript(url, callback);
     console.log("inside call back " + rValue); 
   }
 */
+
+// Format for creating big integers
+// const max = Number.MAX_SAFE_INTEGER;
+
+
+

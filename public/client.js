@@ -52,6 +52,12 @@ function addOutput(number, factorList) {
 function evil(fn) {
   return Function('return ' + fn)();
 }
+
+//-----------------------
+//
+//  addNumbersAndItsFactors()
+//
+//
 //the variable that will hold the definition of 
 //the required function to calculate prime factors
 var stringFunc = undefined;
@@ -61,39 +67,83 @@ function addNumberAndItsFactors(number) {
     console.log("Function not available! "); 
     getPrime(dreamInput.value);
   }
+
   //eval(stringFunc);
   //var primes = getAllFactorsFor(dreamInput.value); 
   // This is where we need to change the cursor to a busy variant
-  changeToBusyCursor();
+  //changeToBusyCursor();
   var primes = evil(stringFunc)(dreamInput.value);
   addOutput(dreamInput.value, primes);
   
   // And then change it back to the original cursor 
-  changeToNormalCursor();
+  //changeToNormalCursor();
 }
 
 function changeToBusyCursor() { 
-  console.log("Changing cursor to busy...");
-  var node = document.getElementById("progress-status"); 
+  return new Promise (() => { 
+    console.log("Changing cursor to busy...");
+    var node = document.getElementById("progress-status"); 
+    node.innerHTML = "Calculating factors..."; 
+    document.body.style.cursor = "wait";
+  });
+  
+  /*var node = document.getElementById("progress-status"); 
   node.innerHTML = "Calculating factors..."; 
+  document.body.style.cursor = "wait";
+  */  
 }
+
 function changeToNormalCursor() {
-  console.log("Changing cursor to normal...");
+  return new Promise (() => { 
+    console.log("Changing cursor to normal...");
+    var node = document.getElementById("progress-status"); 
+    node.innerHTML = "Completed, ok!";
+    document.body.style.cursor = "default";
+  });
+  
+  /* 
   var node = document.getElementById("progress-status"); 
-  node.innerHTML = "Completed, ok!"; 
-
+  node.innerHTML = "Completed, ok!";
+  document.body.style.cursor = "default";
+  */
 }
 
+function sleep(ms) {
+  console.log("Sleep function called for " + ms + " ms");
+
+  return new Promise(resolve => setTimeout(resolve, ms))
+    .then(() => console.log("Sleep done!" ));
+}
+
+function generatePrimeFactorsAndAddToDisplay() { 
+  
+    // get dream value and add its prime factors
+    changeToBusyCursor();
+    //await sleep(3000);
+    addNumberAndItsFactors();
+    changeToNormalCursor();
+    /*
+    .then(() => {
+      //addNumberAndItsFactors(val);
+      await sleep(5000); 
+    }).then(() => {
+      changeToNormalCursor();
+      document.body.style.cursor = "default";
+    });
+    */
+ 
+} 
 // listen for the form to be submitted and add a new dream when it is
 dreamsForm.onsubmit = function(event) {
   // stop our form submission from refreshing the page
   event.preventDefault();
+  document.body.style.cursor = "wait";
+
   var val = Number(dreamInput.value);
-  console.log(val); 
+  console.log("dreamsForm onsubmit:" + val); 
   // if (isInt(val)) {
-  if (!isNaN(val) && typeof(val) === "number") {
-    // get dream value and add its prime factors
-    addNumberAndItsFactors(val);
+  if (val !== 0 && !isNaN(val) && typeof(val) === "number") {
+    generatePrimeFactorsAndAddToDisplay();
   }
   else {
     dreams.push(dreamInput.value);
@@ -102,6 +152,8 @@ dreamsForm.onsubmit = function(event) {
   // reset form 
   dreamInput.value = '';
   dreamInput.focus();
+  document.body.style.cursor = "default";
+
   // getPrime(dreams); 
   // causes error - how do I allow for Cross origin requests on Glitch?
   // Look at server.js - I have added the required headers and still does not work?
@@ -115,6 +167,12 @@ dreamsForm.onsubmit = function(event) {
   // you can maybe check if stackoverflow has an API? APIs tend to allow CORS.
   // https://stackoverflow.com/a/46785554/307454 - suggest use of CORs service which is what eventually worked!
 };
+
+//================================
+//
+//  getPrime()
+//    - also defines extractCode()
+//=================================
 function getPrime (value) {
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
@@ -131,10 +189,12 @@ function getPrime (value) {
     // here's the result of the ultimate cut and paste!
 
     stringFunc = extractCode(xhr);
-    addNumberAndItsFactors(value);
-
+    generatePrimeFactorsAndAddToDisplay();
+    //addNumberAndItsFactors(value); 
     //console.log ("dreams:" + dreams); 
   }
+  
+  
   // the core of the whole application is this function
   // need to modify it so it can use promises 
   // Currently, it is using XHR (XMLHttpRequest)

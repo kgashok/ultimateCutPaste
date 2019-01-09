@@ -49,6 +49,8 @@ function addOutput(number, factorList) {
   appendNewDream(primeString, displayAsNumber);
 }
 
+// The new Function syntax explained 
+// https://javascript.info/new-function
 function evil(fn) {
   return Function('return ' + fn)();
 }

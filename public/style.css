@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+#app { 
+  font-size: 2em;
+}
+
 body {
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   margin: 2em;

@@ -1,3 +1,33 @@
+/* global Typewriter */
+
+// import Typewriter from 'typewriter-effect/dist/core';
+
+var app = document.getElementById('app');
+
+
+var typewriter = new Typewriter(app, {
+    // loop: true
+});
+
+function animate(elem, content) { 
+  typewriter.typeString(content)
+    .pauseFor(2500)
+    .deleteAll()
+    .start()
+
+  /*
+  typewriter.typeString('Hello World!')
+    .pauseFor(2500)
+    .deleteAll()
+    .typeString('Strings can be removed')
+    .pauseFor(2500)
+    .deleteChars(7)
+    .typeString('<strong>altered!</strong>')
+    .pauseFor(2500)
+    .start();
+  */
+}
+
 // client-side js
 // run by the browser each time your view template is loaded
 console.log('hello world :o');
@@ -20,6 +50,8 @@ const appendNewDream = function(dream, factors) {
   else if (factors == "prime") {
     newListItem.setAttribute("class", "prime");
   }
+  animate(newListItem, dream); 
+  
   newListItem.innerHTML = dream;
   dreamsList.appendChild(newListItem);
 }
@@ -47,6 +79,8 @@ function addOutput(number, factorList) {
   }
   dreams.push(primeString);
   appendNewDream(primeString, displayAsNumber);
+  animate(app, '<strong>done!</strong>'); 
+
 }
 
 // The new Function syntax explained 
@@ -276,6 +310,4 @@ loadScript(url, callback);
 
 // Format for creating big integers
 // const max = Number.MAX_SAFE_INTEGER;
-
-
 
